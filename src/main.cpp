@@ -1,18 +1,7 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
-
-void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
-}
-
-void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
-}
+// Bật TEST_MODE trong platformio.ini:
+// build_flags = -D TEST_MODE
+#ifdef TEST_MODE
+  #include "test/test_motor_pwm.cpp"
+#endif
