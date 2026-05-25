@@ -14,7 +14,7 @@ constexpr uint32_t  TELEMETRY_INTERVAL_MS = 50;    // 20 Hz
 // Motor / PWM
 constexpr int       PWM_FREQ_HZ         = 20000;   // 20kHz, trên ngưỡng nghe
 constexpr int       PWM_MAX             = 1023;    // độ phân giải 10-bit
-constexpr int       PWM_DEADBAND        = 30;      // dưới ngưỡng này motor không quay
+constexpr int       PWM_DEADBAND        = 20;      // giảm từ 30 → 20 để test, chỉnh lại sau khi motor đã quay
 
 // Encoder
 constexpr int       ENC_PPR             = 26;      // pulses per revolution (GA25-370 raw)
@@ -23,12 +23,13 @@ constexpr float     WHEEL_DIAMETER_M    = 0.065f;  // đường kính bánh xe (
 constexpr float     ENC_TICKS_PER_REV   = ENC_PPR * GEAR_RATIO * 4; // x4 vì quadrature
 
 // PID
-// Giá trị khởi đầu — tune lại khi test thực tế
-constexpr float     PID_KP              = 20.0f;
-constexpr float     PID_KI              = 0.5f;
-constexpr float     PID_KD              = 0.8f;
+// Ki = 0 trong lúc test phần cứng ban đầu — tránh integral kéo ngược output
+// Khi motor đã quay ổn định thì mới thêm Ki dần
+constexpr float     PID_KP              = 30.0f;   // tăng từ 20 → 30 để có đủ torque
+constexpr float     PID_KI              = 0.0f;    // TẮT trong lúc test
+constexpr float     PID_KD              = 0.5f;
 constexpr float     PID_OUTPUT_MAX      = PWM_MAX;
-constexpr float     PID_INTEGRAL_MAX    = 200.0f;  // anti-windup clamp
+constexpr float     PID_INTEGRAL_MAX    = 200.0f;
 
 // Balance
 constexpr float     TARGET_ANGLE        = 0.0f;    // góc cân bằng (độ), chỉnh offset theo thực tế
