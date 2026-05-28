@@ -20,6 +20,7 @@ public:
 private:
     IMUData imuData;
     Adafruit_MPU6050 mpu;
+    uint32_t _lastUs = 0;
 };
 
 #endif

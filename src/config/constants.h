@@ -4,8 +4,8 @@
 // constants.h — hằng số toàn hệ thống
 
 // WiFi
-constexpr const char* WIFI_SSID         = "YourSSID";
-constexpr const char* WIFI_PASSWORD     = "YourPassword";
+constexpr const char* WIFI_SSID         = "TP-LINK_2B99";
+constexpr const char* WIFI_PASSWORD     = "xincamon";
 
 // WebSocket
 constexpr uint16_t  WS_PORT             = 81;
